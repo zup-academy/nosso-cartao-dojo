@@ -1,5 +1,6 @@
 package br.com.zup.nossocartao.propostas;
 
+import br.com.zup.nossocartao.propostas.service.AnalisePropostaRequest;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -73,6 +74,10 @@ public class Proposta {
 
     public String getEndereco() {
         return endereco;
+    }
+
+    public AnalisePropostaRequest toAnalisePropostaRequest() {
+        return new AnalisePropostaRequest(this.documento, this.nome, this.id);
     }
 
 }

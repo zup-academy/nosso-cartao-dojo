@@ -1,6 +1,5 @@
 package br.com.zup.nossocartao.propostas.resource;
 
-import br.com.zup.nossocartao.propostas.Proposta;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
@@ -67,10 +66,6 @@ public class PropostaRequest {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public Proposta toModel() {
-        return new Proposta(this.documento,this.email,this.nome,this.salario,this.endereco);
     }
 
 }

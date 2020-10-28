@@ -22,8 +22,15 @@ public class PropostaResource {
 
     @PostMapping
     public ResponseEntity<PropostaCriada> nova(@Valid @RequestBody PropostaRequest request, UriComponentsBuilder builder){
-        final var propostaCriada = this.propostaService.criar(request.toModel());
-        return ResponseEntity.created(builder.path("/api/propostas/{id}").buildAndExpand(propostaCriada.getId()).toUri()).body(propostaCriada);
+
+        final var proposta = this.propostaService.criar(request.getDocumento(), request.getEmail(),
+                request.getNome(), request.getSalario(), request.getEndereco());
+
+        final var propostaCriada = new PropostaCriada(proposta.getId());
+
+        return ResponseEntity.created(builder.path("/api/propostas/{id}")
+                .buildAndExpand(propostaCriada.getId()).toUri())
+                .body(propostaCriada);
     }
 
 }

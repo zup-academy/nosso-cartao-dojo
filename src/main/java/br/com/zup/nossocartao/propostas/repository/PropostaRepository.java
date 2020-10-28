@@ -2,6 +2,9 @@ package br.com.zup.nossocartao.propostas.repository;
 
 import br.com.zup.nossocartao.propostas.Proposta;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PropostaRepository extends CrudRepository<Proposta,String> {
+@Repository
+public interface PropostaRepository extends CrudRepository<Proposta, String> {
+
 }

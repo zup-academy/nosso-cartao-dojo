@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: nosso-cartao-dojo
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
     username: ${DB_USER:postgres}
@@ -9,3 +11,16 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+analise:
+  host: ${ANALISE_HOST:http://localhost:9999}
+
+# Opentracing
+opentracing:
+  jaeger:
+    enabled: { JAEGER_ENABLED:true }
+    service-name: ${spring.application.name}
+    probabilistic-sampler:
+      sampling-rate: ${JAEGER_SAMPLER:1}
+    http-sender:
+      url: ${JAEGER_ENDPOINT:http://localhost:14268/api/traces}
