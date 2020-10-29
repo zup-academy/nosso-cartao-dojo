@@ -4,10 +4,7 @@ import br.com.zup.nossocartao.propostas.service.AnalisePropostaRequest;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -41,15 +38,22 @@ public class Proposta {
     @NotBlank
     private String endereco;
 
-    @Deprecated
-    public Proposta(){}
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private PropostaStatus status;
 
-    public Proposta(@NotBlank @CPF String documento, @NotBlank @Email String email, @NotBlank String nome, @NotNull @Positive BigDecimal salario, @NotBlank String endereco) {
+    @Deprecated
+    public Proposta() {
+    }
+
+    public Proposta(@NotBlank @CPF String documento, @NotBlank @Email String email, @NotBlank String nome,
+                    @NotNull @Positive BigDecimal salario, @NotBlank String endereco) {
         this.documento = documento;
         this.email = email;
         this.nome = nome;
         this.salario = salario;
         this.endereco = endereco;
+        this.status = PropostaStatus.PENDENTE;
     }
 
     public String getId() {
@@ -74,6 +78,14 @@ public class Proposta {
 
     public String getEndereco() {
         return endereco;
+    }
+
+    public PropostaStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PropostaStatus status) {
+        this.status = status;
     }
 
     public AnalisePropostaRequest toAnalisePropostaRequest() {

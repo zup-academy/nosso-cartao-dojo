@@ -2,6 +2,8 @@ package br.com.zup.nossocartao.propostas;
 
 public enum PropostaStatus {
 
-    ELEGIVEL, NAO_ELEGIVEL
+    PENDENTE,
+    ELEGIVEL,
+    NAO_ELEGIVEL
 
 }

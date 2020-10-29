@@ -43,11 +43,7 @@ public class PropostaService {
 
         log.info("Chamando {} {}", url, analisePropostaRequest);
         final var analisePropostaResponse = this.restTemplate.postForObject(url, analisePropostaRequest, AnalisePropostaResponse.class);
-        if (AnalisePropostaStatus.SEM_RESTRICAO.equals(analisePropostaResponse.getResultadoSolicitacao())) {
-            // Mapea status propsota
-        } else {
-            // Mapea status propsota
-        }
+        propostaPersistida.setStatus(analisePropostaResponse.getResultadoSolicitacao().toPropostaStatus());
 
         return propostaPersistida;
     }
